@@ -28,7 +28,7 @@ def main():
         wikipedia = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
         tools = [wikipedia]
 
-        agent_type = 0
+        agent_type = 1
         match agent_type:
             case 0:
                 model_with_tools = model.bind_tools(tools)
