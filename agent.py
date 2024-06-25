@@ -24,26 +24,39 @@ def main():
         print("Hello Agent!")
 
         # Create the agent
-        memory = SqliteSaver.from_conn_string(":memory:")
         model = AzureChatOpenAI(deployment_name=azure_gptx_deployment, openai_api_version=azure_apiversion, openai_api_key=azure_apikey, azure_endpoint=azure_apibase, temperature=0.9)
         wikipedia = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
         tools = [wikipedia]
-        agent_executor = create_react_agent(model, tools, checkpointer=memory)
 
-        # Use the agent
-        config = {"configurable": {"thread_id": "abc123"}}
-        for chunk in agent_executor.stream(
-            {"messages": [HumanMessage(content="hi im bob! and i live in taoyuan city")]}, config
-        ):
-            print(chunk)
-            print("----")
+        agent_type = 0
+        match agent_type:
+            case 0:
+                model_with_tools = model.bind_tools(tools)
+                response = model_with_tools.invoke([HumanMessage(content="hi im bob! and i live in taoyuan city")])
+                print(f"ContentString: {response.content}")
+                print(f"ToolCalls: {response.tool_calls}")
 
-        for chunk in agent_executor.stream(
-            {"messages": [HumanMessage(content="who is the president of the country of where I live?")]}, config
-        ):
-            print(chunk)
-            print("----")
-        
+                response = model_with_tools.invoke([HumanMessage(content="who is the mayor of taoyuan city?")])
+                print(f"ContentString: {response.content}")
+                print(f"ToolCalls: {response.tool_calls}")
+            case 1:
+                memory = SqliteSaver.from_conn_string(":memory:")
+                agent_executor = create_react_agent(model, tools, checkpointer=memory)
+                # Use the agent
+                config = {"configurable": {"thread_id": "abc123"}}
+                for chunk in agent_executor.stream(
+                    {"messages": [HumanMessage(content="hi im bob! and i live in taoyuan city")]}, config
+                ):
+                    print(chunk)
+                    print("----")
+                for chunk in agent_executor.stream(
+                    {"messages": [HumanMessage(content="who is the president of the country of where I live?")]}, config
+                ):
+                    print(chunk)
+                    print("----")
+            case _:
+                print(f'Error: Wring agent_type({agent_type})!')
+
     except ValueError as ve:
         return str(ve)
 
