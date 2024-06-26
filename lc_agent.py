@@ -23,13 +23,14 @@ def main():
     try:
         print("Hello Agent!")
 
-        # Create the agent
         model = AzureChatOpenAI(deployment_name=azure_gptx_deployment, openai_api_version=azure_apiversion, openai_api_key=azure_apikey, azure_endpoint=azure_apibase, temperature=0.9)
+
+        # Create the agent
         wikipedia = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
         tools = [wikipedia]
 
-        agent_type = 0
-        match agent_type:
+        run_option = 1
+        match run_option:
             case 0:
                 model_with_tools = model.bind_tools(tools)
                 response = model_with_tools.invoke([HumanMessage(content="hi im bob! and i live in taoyuan city")])
@@ -55,7 +56,7 @@ def main():
                     print(chunk)
                     print("----")
             case _:
-                print(f'Error: Wring agent_type({agent_type})!')
+                print(f'Error: Wrong run_option({run_option})!')
 
     except ValueError as ve:
         return str(ve)
