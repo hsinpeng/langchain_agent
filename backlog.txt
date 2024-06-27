@@ -1,0 +1,19 @@
+General purpose
+1. How to use Built-in agents by langchain
+2. How to use Built-in tools by langchain
+3. The procedure to make an application with single agent
+4. How to construct a customized agent
+5. The procedure to construct a customized tool
+6. The trial of LLM related packages (AutoXXX)
+7. Sandboxed execution environment (SEE)
+
+Statistical analysis relaetd
+1. Pandas Dataframe (langchain) and PandasAI 
+2. Customized Pandas tools for specific businese domain (data format)
+3. The LLM application (or REST server) with statistical analysis (Support both general and domain-specific data)
+
+ML Model prediction related
+1. The confirmation of the specific businese domain
+2. The construction of (1~2) ML models for the specific businese domain
+3. Agent and tools of AutoML for the specific businese domain
+4. The data analysis application (or REST server) for the specific businese domain
