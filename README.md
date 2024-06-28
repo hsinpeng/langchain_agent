@@ -34,10 +34,6 @@ Note: Before using this project, you have to set and get these parameter from Az
 ```
 
 4. Install related python packages.
-```text=
-python3 -m pip install --no-cache-dir -U pip
-python3 -m pip install --no-cache-dir -r requirements.txt
-```
 
 5. The main program is 'agent.py', check it and learn how to use it by inspecting source code.
 
