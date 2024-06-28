@@ -55,7 +55,7 @@ def call_model(state: AgentState):
 
 def main():
     try:
-        print("Hello Langgraph!")
+        print("Hello, Langgraph!")
         
         run_option = 0
         match run_option:

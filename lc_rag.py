@@ -39,7 +39,7 @@ def get_session_history(session_id: str) -> BaseChatMessageHistory:
 
 def main():
     try:
-        print("Hello LangChain RAG!")
+        print("Hello, LangChain RAG!")
 
         model = AzureChatOpenAI(deployment_name=azure_gptx_deployment, openai_api_version=azure_apiversion, openai_api_key=azure_apikey, azure_endpoint=azure_apibase, temperature=0.9)
         embed = AzureOpenAIEmbeddings(deployment=azure_embd_deployment, openai_api_key=azure_apikey, openai_api_version=azure_apiversion, openai_api_type=azure_apitype, azure_endpoint=azure_apibase)

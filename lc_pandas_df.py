@@ -18,7 +18,7 @@ param_file.close()
 
 def main():
     try:
-        print("Hello LangChain Pandas Dataframe!")
+        print("Hello, LangChain Pandas Dataframe!")
 
         model = AzureChatOpenAI(deployment_name=azure_gptx_deployment, openai_api_version=azure_apiversion, openai_api_key=azure_apikey, azure_endpoint=azure_apibase, temperature=0)
         embed = AzureOpenAIEmbeddings(deployment=azure_embd_deployment, openai_api_key=azure_apikey, openai_api_version=azure_apiversion, openai_api_type=azure_apitype, azure_endpoint=azure_apibase)

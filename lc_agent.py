@@ -21,7 +21,7 @@ param_file.close()
 
 def main():
     try:
-        print("Hello Agent!")
+        print("Hello, LangChain Agent!")
 
         model = AzureChatOpenAI(deployment_name=azure_gptx_deployment, openai_api_version=azure_apiversion, openai_api_key=azure_apikey, azure_endpoint=azure_apibase, temperature=0.9)
 
